@@ -15,13 +15,13 @@ RUN apt-get install -y apt-utils software-properties-common apt-transport-https 
     pngcrush rsync schedtool squashfs-tools xsltproc yasm zip zlib1g-dev \
     libncurses5 tmux ccache zsh neofetch locales locales-all wget shellcheck nano direnv
     
-# Create user steyhist (replace 'gitpod' with your desired username)
-RUN useradd -l -u 33333 -G sudo -md /home/steyhist -s /usr/bin/bash -p steyhist steyhist && \
+# Create user gitpod (replace 'gitpod' with your desired username)
+RUN useradd -l -u 33333 -G sudo -md /home/gitpod -s /usr/bin/bash -p gitpod gitpod && \
     # passwordless sudo for users in the 'sudo' group
     sed -i.bkp -e 's/%sudo\s\+ALL=(ALL\(:ALL\)\?)\s\+ALL/%sudo ALL=NOPASSWD:ALL/g' /etc/sudoers
 
-# Switch to steyhist User
-USER steyhist
+# Switch to gitpod User
+USER gitpod
 
 # Setup Localtime to Asia/Jakarta
 RUN sudo ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
