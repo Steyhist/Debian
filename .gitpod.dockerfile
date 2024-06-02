@@ -1,11 +1,15 @@
 # CentOS Docker Image
-FROM centos:latest
+FROM centos:centos8-stream
 
-# Non-interactive installation mode (correct for CentOS/Yum)
+# Non-interactive installation mode
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Update all packages (use yum for CentOS)
-RUN yum -y update
+# Update repository configuration to use CentOS Vault mirrors
+RUN sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
+RUN sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
+
+# Synchronize packages
+RUN yum distro-sync -y
 
 # Install necessary packages (using yum, and filtering for CentOS-specific ones)
 RUN yum install -y yum-utils epel-release \
