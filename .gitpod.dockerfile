@@ -8,14 +8,16 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN dnf -y update
 
 # Install necessary packages (using dnf)
-RUN dnf install -y dnf-plugins-core && \
-    dnf config-manager --set-enabled powertools && \
-    dnf install -y @development-tools elfutils-libelf-devel openssl-devel bc git dwarves \
-    sudo openssh-server screen python3 android-tools adb bison \
+RUN dnf install -y dnf-plugins-core 
+RUN dnf config-manager --set-enabled powertools 
+RUN dnf install -y @development-tools elfutils-libelf-devel openssl-devel bc git dwarves \
+    sudo openssh-server screen python3 \
     make automake gcc gcc-c++ kernel-devel curl flex gnupg gperf ImageMagick \
-    readline-devel zlib-devel lz4-devel libxml2 libxml2-utils lzop \
+    readline-devel zlib-devel libxml2 libxml2-utils lzop \
     pngcrush rsync schedtool squashfs-tools xsltproc yasm zip zlib-devel \
     ncurses tmux ccache zsh neofetch glibc-langpack-en wget shellcheck nano direnv
+# Coba pasang android-tools atau android-platform-tools, lihat mana yang tersedia
+RUN dnf search android-tools || dnf search android-platform-tools
 
 # Create user steyhist 
 RUN useradd -l -u 33333 -G wheel -md /home/steyhist -s /usr/bin/bash -p steyhist steyhist && \
