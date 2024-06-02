@@ -7,11 +7,11 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Update all packages (use dnf for Rocky Linux)
 RUN dnf -y update
 
-# Install necessary packages (using dnf, with corrected package names)
-RUN dnf install -y dnf-utils epel-release \
+RUN dnf -y update && \
+    dnf install -y dnf-utils epel-release \
     sudo openssh-server screen python3 git android-tools adb bc bison \
-    make automake gcc gcc-c++ kernel-devel curl flex gnupg gperf imagemagick libncurses-devel \
-    libreadline-devel zlib-devel lz4-devel libxml2 libxml2-utils lzop \
+    make automake gcc gcc-c++ kernel-devel curl flex gnupg gperf ImageMagick libncurses-devel \
+    readline-devel zlib-devel lz4-devel libxml2 libxml2-utils lzop \
     pngcrush rsync schedtool squashfs-tools xsltproc yasm zip zlib-devel \
     ncurses tmux ccache zsh neofetch glibc-langpack-en wget shellcheck nano direnv
 
