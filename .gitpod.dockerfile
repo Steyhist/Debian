@@ -1,5 +1,5 @@
 # CentOS Docker Image
-FROM centos/centos:stream8   # Corrected base image tag
+FROM centos/centos:stream8  
 
 # Non-interactive installation mode
 ENV DEBIAN_FRONTEND=noninteractive
