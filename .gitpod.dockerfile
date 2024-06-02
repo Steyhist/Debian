@@ -1,5 +1,5 @@
 # CentOS Docker Image
-FROM centos:centos8-stream
+FROM centos/centos:stream8   # Corrected base image tag
 
 # Non-interactive installation mode
 ENV DEBIAN_FRONTEND=noninteractive
@@ -19,12 +19,12 @@ RUN yum install -y yum-utils epel-release \
     pngcrush rsync schedtool squashfs-tools xsltproc yasm zip zlib-devel \
     ncurses tmux ccache zsh neofetch glibc-all-langpacks wget shellcheck nano direnv
 
-# Create user steyhist (previously gitpod)
+# Create user steyhist 
 RUN useradd -l -u 33333 -G wheel -md /home/steyhist -s /usr/bin/bash -p steyhist steyhist && \
     # passwordless sudo for users in the 'wheel' group (CentOS uses 'wheel')
     sed -i.bkp -e 's/%wheel\s\+ALL=(ALL\(:ALL\)\?)\s\+ALL/%wheel ALL=NOPASSWD:ALL/g' /etc/sudoers
 
-# Switch to steyhist User (previously gitpod)
+# Switch to steyhist User
 USER steyhist
 
 # Setup Localtime to Asia/Jakarta
