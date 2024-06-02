@@ -7,13 +7,13 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Update all packages (use dnf for Rocky Linux)
 RUN dnf -y update
 
-# Install necessary packages (using dnf)
+# Install necessary packages (using dnf, with corrected package names)
 RUN dnf install -y dnf-utils epel-release \
     sudo openssh-server screen python3 git android-tools adb bc bison \
-    build-essential curl flex gcc gcc-c++ gnupg gperf imagemagick libncurses-devel \
+    make automake gcc gcc-c++ kernel-devel curl flex gnupg gperf imagemagick libncurses-devel \
     libreadline-devel zlib-devel lz4-devel libxml2 libxml2-utils lzop \
     pngcrush rsync schedtool squashfs-tools xsltproc yasm zip zlib-devel \
-    ncurses tmux ccache zsh neofetch glibc-all-langpacks wget shellcheck nano direnv
+    ncurses tmux ccache zsh neofetch glibc-langpack-en wget shellcheck nano direnv
 
 # Create user steyhist 
 RUN useradd -l -u 33333 -G wheel -md /home/steyhist -s /usr/bin/bash -p steyhist steyhist && \
